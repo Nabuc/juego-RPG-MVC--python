@@ -1,0 +1,3 @@
+class RepositorioPersonajes:
+    personajes = []
+
