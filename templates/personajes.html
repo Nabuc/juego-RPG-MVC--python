@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PersonajesRPG</title>
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+  <body>
+      <h2>Lista de Personajes</h2>
+    <ul>
+        {% for p in personajesRPG %}
+            <li>(Nombre: {{ p.nombre }} - Clase: {{ p.claseRPG }} Nivel: {{ p.nivel }}, Vida: {{ p.vida }})</li>
+        {% endfor %}
+    </ul>
+    <form method="post" action="/personajes">
+        <input name="nombre">
+        <input name="claseRPG">
+        <input name="nivel">
+        <input name="vida">
+        <button>Enviar</button>
+    </form>
+  </body>
+</html>

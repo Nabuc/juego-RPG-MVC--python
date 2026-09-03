@@ -1,3 +1,7 @@
 class RepositorioPersonajes:
-    personajes = []
+    ListaPersonajes = []
+    @classmethod
+    def obtenerTodos(cls):
+        todosPersonajes= cls.ListaPersonajes
+        return todosPersonajes
 
