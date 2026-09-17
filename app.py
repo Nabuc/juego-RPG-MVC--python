@@ -1,6 +1,7 @@
 from flask import Flask, request , redirect, render_template
-from modelo.personaje import Personaje
-from modelo.repositorio import RepositorioPersonajes
+from model.personaje import Personaje
+from model.repositorio import RepositorioPersonajes
+from service.personajes_service import validar_personajes
 app = Flask(__name__)
 
 @app.route('/personajes', methods=['GET'])
@@ -13,6 +14,12 @@ def crear_personaje():
     nivel = request.form['nivel']
     vida = request.form['vida']
     nuevoPersonaje = Personaje(nombre,claseRPG,nivel,vida)
+    nuevoPersonaje.nivel = int(nuevoPersonaje.nivel)
+    nuevoPersonaje.vida = int(nuevoPersonaje.vida)
+    try:
+        validar_personajes(nuevoPersonaje)
+    except ValueError as e:
+        return render_template("personajes.html", error=str(e))
     RepositorioPersonajes.ListaPersonajes.append(nuevoPersonaje)
     return redirect('/personajes')
 if __name__ == '__main__':
